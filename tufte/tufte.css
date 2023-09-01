@@ -94,7 +94,7 @@ h3 {
 hr {
     display: block;
     height: 1px;
-    width: 55%;
+    width: 80%;
     border: 0;
     border-top: 1px solid #ccc;
     margin: 1em 0;
@@ -171,12 +171,12 @@ blockquote {
 }
 
 blockquote p {
-    width: 55%;
+    width: 80%;
     margin-right: 40px;
 }
 
 blockquote footer {
-    width: 55%;
+    width: 80%;
     font-size: 1.1rem;
     text-align: right;
 }
@@ -184,14 +184,14 @@ blockquote footer {
 section > p,
 section > footer,
 section > table {
-    width: 55%;
+    width: 80%;
 }
 
 /* 50 + 5 == 55, to be the same width as paragraph */
 section > dl,
 section > ol,
 section > ul {
-    width: 50%;
+    width: 70%;
     -webkit-padding-start: 5%;
 }
 
@@ -206,7 +206,7 @@ figure {
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
-    max-width: 55%;
+    max-width: 80%;
     -webkit-margin-start: 0;
     -webkit-margin-end: 0;
     margin: 0 0 3em 0;
@@ -280,7 +280,7 @@ img {
     float: right;
     clear: right;
     margin-right: -60%;
-    width: 50%;
+    width: 70%;
     margin-top: 0.3rem;
     margin-bottom: 0;
     font-size: 1.1rem;
