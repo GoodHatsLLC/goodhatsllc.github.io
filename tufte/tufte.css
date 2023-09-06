@@ -220,18 +220,7 @@ dl,
 ol,
 ul {
   width: 90%;
-}
-
-pre {
-  width: 90%;
-}
-
-figure {
-  max-width: 90%;
-}
-
-table {
-  width: 85%;
+  margin-left: 5%;
 }
 
 @media (prefers-color-scheme: dark) {
