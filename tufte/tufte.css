@@ -226,10 +226,11 @@ pre, table {
 .article-meta {
     display: flex;
     font-size: 1.2rem;
+    justify-content: start;
 }
 .article-meta-item {
     flex: initial;
-    margin: 1em;
+    margin-right: 1em;
 }
 
 footer.page-footer::before {
