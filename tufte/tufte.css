@@ -36,10 +36,8 @@
   font-display: swap;
 }
 
-.weblog-header {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.weblog-header-item {
+  display: inline-block;
 }
 
 html {
@@ -222,9 +220,9 @@ p.article-date, p.article-tags {
 footer.page-footer::before, footer.article-footer::before {
     content: attr(data-descr);
     display: block;
-    border-top: 1px solid #111111;
+    border-top: 1px solid #11111199;
     width: 55%;
-    margin: 4rem auto;
+    margin: 2rem auto 0 auto;
 }
 
 footer.page-footer .page-footer-item > ul {
