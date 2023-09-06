@@ -108,7 +108,7 @@ article > h1 + p {
 }
 
 article {
-  padding: 2rem 0rem;
+  padding: 1rem 0rem;
 }
 
 p,
@@ -213,7 +213,6 @@ pre {
   height: 100%;
 }
 
-hr,
 footer,
 table,
 dl,
