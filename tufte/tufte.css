@@ -213,12 +213,24 @@ pre, table {
   height: 100%;
 }
 
-footer.page-footer::before {
+p.article-date, p.article-tags {
+    display: inline;
+    padding-right: 1em;
+    font-size: 1.2rem;
+}
+
+footer.page-footer::before, footer.article-footer::before {
     content: attr(data-descr);
     display: block;
-    border: 1px solid #111111;
-    width: 70%;
+    border-top: 1px solid #111111;
+    width: 55%;
     margin: 4rem auto;
+}
+
+footer.page-footer .page-footer-item > ul {
+    list-style: none;
+    font-size: 1.2rem;
+    padding: 0;
 }
 
 @media (prefers-color-scheme: dark) {
