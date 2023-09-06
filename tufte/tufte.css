@@ -227,14 +227,17 @@ pre, table {
   display: flex;
   font-size: 1.2rem;
   justify-content: start;
-  max-width: 100%;
+  max-width: 90%;
   flex-wrap: wrap;
 }
 .article-meta-item {
-  flex: initial;
-  margin-right: 1em;
-  font-size: 1em;
-  white-space: nowrap;
+    flex: auto;
+    margin-right: 1em;
+    font-size: 1em;
+    white-space: nowrap;
+    flex-basis: fit-content;
+    max-width: 90%;
+    width: fit-content;
 }
 
 footer.page-footer::before {
