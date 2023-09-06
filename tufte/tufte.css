@@ -166,7 +166,7 @@ blockquote {
 }
 
 blockquote p {
-  width: 55%;
+  width: 80%;
 }
 
 dt:not(:first-child),
