@@ -48,15 +48,9 @@
     margin-inline-start: 0.5rem;
 }
 
-.weblog-header-item::after {
-    content: " · ";
-    margin-inline-start: 0.5rem;
-}
-
-.weblog-header-item:list-child::after {
+.weblog-header-item:last-child::after {
     display: none;
 }
-
 
 html {
   font-size: 14px;
