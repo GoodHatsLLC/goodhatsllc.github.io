@@ -213,6 +213,13 @@ pre, table {
   height: 100%;
 }
 
+footer.page-footer::before {
+    content: attr(data-descr);
+    display: block;
+    border: 1px solid #111111;
+    width: 70%;
+    margin: 4rem auto;
+}
 
 @media (prefers-color-scheme: dark) {
   body {
