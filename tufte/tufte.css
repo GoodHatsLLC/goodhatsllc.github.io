@@ -193,7 +193,7 @@ h3 > code {
   font-size: 0.80em;
 }
 
-pre {
+pre, table {
   width: 90%;
   margin-left: 5%;
 }
@@ -213,13 +213,6 @@ pre {
   height: 100%;
 }
 
-table,
-dl,
-ol,
-ul {
-  width: 90%;
-  margin-left: 5%;
-}
 
 @media (prefers-color-scheme: dark) {
   body {
