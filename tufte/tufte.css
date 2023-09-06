@@ -139,6 +139,7 @@ blockquote > p {
 
 blockquote > p > cite {
   width: 100%;
+  display: block;
   font-size: 1.1rem;
   text-align: right;
   font-style: italic;
@@ -229,10 +230,6 @@ figure {
   max-width: 90%;
 }
 
-label {
-  cursor: pointer;
-}
-
 table {
   width: 85%;
 }
@@ -243,7 +240,7 @@ table {
     color: #ddd;
   }
   a:link {
-    text-shadow: 0.03em 0 #151515, -0.03em 0 #151515, 0 0.03em #151515, 0 -0.03em #151515, 0.06em 0 #151515, -0.06em 0 #151515, 0.09em 0 #151515, -0.09em 0 #151515, 0.12em 0 #151515, -0.12em 0 #151515, 0.15em 0 #151515, -0.15em 0 #151515;
+    text-shadow: 0.03em 0 #222222, -0.03em 0 #222222, 0 0.03em #222222, 0 -0.03em #222222, 0.06em 0 #222222, -0.06em 0 #222222, 0.09em 0 #222222, -0.09em 0 #222222, 0.12em 0 #222222, -0.12em 0 #222222, 0.15em 0 #222222, -0.15em 0 #222222;
   }
 
 }
