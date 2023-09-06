@@ -37,19 +37,19 @@
 }
 
 .weblog-header-item {
-    display: inline-block;
-    margin-inline-start: 0.5rem;
-    margin-block-start: 1rem;
-    font-size: 1.1em;
+  display: inline-block;
+  margin-inline-start: 0.5rem;
+  margin-block-start: 1rem;
+  font-size: 1.1em;
 }
 
 .weblog-header-item::after {
-    content: " · ";
-    margin-inline-start: 0.5rem;
+  content: " · ";
+  margin-inline-start: 0.5rem;
 }
 
 .weblog-header-item:last-child::after {
-    display: none;
+  display: none;
 }
 
 html {
@@ -99,7 +99,7 @@ hr {
   height: 1px;
   width: 55%;
   border: 0;
-  border-top: 1px solid #ccc;
+  border-top: 1px solid #cccccc;
   margin: 1em 0;
   padding: 0;
 }
@@ -224,41 +224,53 @@ pre, table {
 }
 
 .article-meta {
-    display: flex;
-    font-size: 1.2rem;
-    justify-content: start;
+  display: flex;
+  font-size: 1.2rem;
+  justify-content: start;
+  max-width: 100%;
+  flex-wrap: wrap;
 }
 .article-meta-item {
-    flex: initial;
-    margin-right: 1em;
+  flex: initial;
+  margin-right: 1em;
+  font-size: 1em;
+  white-space: nowrap;
 }
 
 footer.page-footer::before {
-    content: attr(data-descr);
-    display: block;
-    border-top: 1px solid #11111199;
-    width: 55%;
-    margin: 2rem auto 0 auto;
+  content: attr(data-descr);
+  display: block;
+  height: 1px;
+  border-top: 1px solid #11111199;
+  width: 55%;
+  margin: 2rem auto 0 auto;
 }
 
 footer.article-footer {
-    margin: 4rem auto 0 auto;
+  margin: 4rem auto 0 auto;
 }
 
 footer.page-footer .footer-item > ul {
-    list-style: none;
-    font-size: 1.2rem;
-    padding: 0;
+  list-style: none;
+  font-size: 1.2rem;
+  padding: 0;
 }
 
 @media (prefers-color-scheme: dark) {
   body {
     background-color: #222222;
-    color: #ddd;
+    color: #dddddd;
   }
   a:link {
     text-shadow: 0.03em 0 #222222, -0.03em 0 #222222, 0 0.03em #222222, 0 -0.03em #222222, 0.06em 0 #222222, -0.06em 0 #222222, 0.09em 0 #222222, -0.09em 0 #222222, 0.12em 0 #222222, -0.12em 0 #222222, 0.15em 0 #222222, -0.15em 0 #222222;
   }
-
+  hr {
+    display: block;
+    height: 1px;
+    width: 55%;
+    border: 0;
+    border-top: 1px solid #11111199;
+    margin: 1em 0;
+    padding: 0;
+  }
 }
-
