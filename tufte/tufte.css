@@ -223,10 +223,13 @@ pre, table {
   height: 100%;
 }
 
-p.article-date, p.article-tags {
-    display: inline;
-    padding-right: 1em;
+.article-meta {
+    display: flex;
     font-size: 1.2rem;
+}
+.article-meta-item {
+    flex: initial;
+    margin: 1em;
 }
 
 footer.page-footer::before {
@@ -238,7 +241,7 @@ footer.page-footer::before {
 }
 
 footer.article-footer {
-    margin: 2rem auto 0 auto;
+    margin: 4rem auto 0 auto;
 }
 
 footer.page-footer .footer-item > ul {
