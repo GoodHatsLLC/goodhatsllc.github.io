@@ -29,11 +29,17 @@
 
 @font-face {
   font-family: "et-book-roman-old-style";
-  src: url("https://goodhats.llc/tufte/et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.eot?raw=true");
-  src: url("https://goodhats.llc/tufte/et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.eot?raw=true#iefix") format("embedded-opentype"), url("https://goodhats.llc/tufte/et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.woff") format("woff"), url("https://goodhats.llc/tufte/et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.ttf") format("truetype"), url("https://goodhats.llc/tufte/et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.svg#etbookromanosf") format("svg");
+  src: url("et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.eot");
+  src: url("et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.eot?#iefix") format("embedded-opentype"), url("et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.woff") format("woff"), url("et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.ttf") format("truetype"), url("et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.svg#etbookromanosf") format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
+}
+
+.weblog-header {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 html {
@@ -41,31 +47,20 @@ html {
 }
 
 body {
-  width: 87.5%;
-  margin-left: auto;
-  margin-right: auto;
+  width: 84%;
   padding-left: 8%;
   padding-right: 8%;
+  margin-left: auto;
+  margin-right: auto;
   font-family: et-book, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
   background-color: #fffff8;
-  color: #111111;
+  color: #111;
   max-width: 1000px;
-  counter-reset: sidenote-counter;
-}
-
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #222222;
-    color: #dddddd;
-  }
-  blockquote {
-    background-color: #00000011;
-  }
 }
 
 h1 {
   font-weight: 400;
-  margin-top: 2.1rem;
+  margin-top: 3rem;
   margin-bottom: 1.5rem;
   font-size: 3.2rem;
   line-height: 1;
@@ -74,7 +69,7 @@ h1 {
 h2 {
   font-style: italic;
   font-weight: 400;
-  margin-top: 2rem;
+  margin-top: 2.1rem;
   margin-bottom: 1.4rem;
   font-size: 2.2rem;
   line-height: 1;
@@ -92,17 +87,17 @@ h3 {
 hr {
   display: block;
   height: 1px;
-  width: 80%;
+  width: 55%;
   border: 0;
   border-top: 1px solid #ccc;
   margin: 1em 0;
   padding: 0;
 }
 
-p.subtitle {
+article > h1 + p {
   font-style: italic;
   margin-top: 1rem;
-  margin-bottom: 1.4rem;
+  margin-bottom: 4rem;
   font-size: 1.8rem;
   display: block;
   line-height: 1;
@@ -112,17 +107,8 @@ p.subtitle {
   font-family: et-book-roman-old-style;
 }
 
-.danger {
-  color: red;
-}
-
 article {
   padding: 2rem 0rem;
-}
-
-section {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
 }
 
 p,
@@ -136,95 +122,43 @@ ul {
 p {
   margin-top: 1.4rem;
   margin-bottom: 1.4rem;
-  padding-right: 0;
   vertical-align: baseline;
+  width: 90%;
 }
 
-/* Chapter Epigraphs */
-div.epigraph {
-  margin: 5em 0;
-}
-
-div.epigraph > blockquote {
+blockquote {
+  margin-left: 1.5em;
   margin-top: 3em;
   margin-bottom: 3em;
 }
 
-div.epigraph > blockquote,
-div.epigraph > blockquote > p {
+blockquote,
+blockquote > p {
   font-style: italic;
 }
 
-div.epigraph > blockquote > footer {
-  font-style: normal;
-}
-
-div.epigraph > blockquote > footer > cite {
+blockquote > cite {
   font-style: italic;
 }
-/* end chapter epigraphs styles */
 
 blockquote {
-  width: 80%;
-  padding: 0.7rem 1rem;
   font-size: 1.4rem;
-  background-color: #ffffff11;
 }
 
 blockquote p {
+  width: 55%;
   margin-right: 40px;
 }
 
-blockquote footer {
+blockquote cite {
+  width: 100%;
   font-size: 1.1rem;
   text-align: right;
-}
-
-section > p,
-section > footer,
-section > table {
-  width: 80%;
-}
-
-/* 50 + 5 == 55, to be the same width as paragraph */
-section > dl,
-section > ol,
-section > ul {
-  width: 70%;
-  -webkit-padding-start: 5%;
 }
 
 dt:not(:first-child),
 li:not(:first-child) {
   margin-top: 0.25rem;
-}
-
-figure {
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-  max-width: 80%;
-  -webkit-margin-start: 0;
-  -webkit-margin-end: 0;
-  margin: 0 0 3em 0;
-}
-
-figcaption {
-  float: right;
-  clear: right;
-  margin-top: 0;
-  margin-bottom: 0;
-  font-size: 1.1rem;
-  line-height: 1.6;
-  vertical-align: baseline;
-  position: relative;
-  max-width: 40%;
-}
-
-figure.fullwidth figcaption {
-  margin-right: 24%;
 }
 
 /* Links: replicate underline that clears descenders */
@@ -233,12 +167,7 @@ a:visited {
   color: inherit;
 }
 
-.no-tufte-underline:link {
-  background: unset;
-  text-shadow: unset;
-}
-
-a:link, .tufte-underline, .hover-tufte-underline:hover {
+a:link {
   text-decoration: none;
   background: -webkit-linear-gradient(#fffff8, #fffff8), -webkit-linear-gradient(#fffff8, #fffff8), -webkit-linear-gradient(currentColor, currentColor);
   background: linear-gradient(#fffff8, #fffff8), linear-gradient(#fffff8, #fffff8), linear-gradient(currentColor, currentColor);
@@ -251,91 +180,14 @@ a:link, .tufte-underline, .hover-tufte-underline:hover {
 }
 
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
-  a:link, .tufte-underline, .hover-tufte-underline:hover {
+  a:link {
     background-position-y: 87%, 87%, 87%;
   }
 }
 
-/* Adds dark mode */
-@media (prefers-color-scheme: dark) {
-  a:link, .tufte-underline, .hover-tufte-underline:hover {
-    text-shadow: 0.03em 0 #151515, -0.03em 0 #151515, 0 0.03em #151515, 0 -0.03em #151515, 0.06em 0 #151515, -0.06em 0 #151515, 0.09em 0 #151515, -0.09em 0 #151515, 0.12em 0 #151515, -0.12em 0 #151515, 0.15em 0 #151515, -0.15em 0 #151515;
-  }
-}
-
-a:link::selection,
-a:link::-moz-selection {
-  text-shadow: 0.03em 0 #b4d5fe, -0.03em 0 #b4d5fe, 0 0.03em #b4d5fe, 0 -0.03em #b4d5fe, 0.06em 0 #b4d5fe, -0.06em 0 #b4d5fe, 0.09em 0 #b4d5fe, -0.09em 0 #b4d5fe, 0.12em 0 #b4d5fe, -0.12em 0 #b4d5fe, 0.15em 0 #b4d5fe, -0.15em 0 #b4d5fe;
-  background: #b4d5fe;
-}
-
-/* Sidenotes, margin notes, figures, captions */
+/* Sidenotes, margin notes, tufte/img/s, captions */
 img {
-  max-width: 100%;
-}
-
-.sidenote,
-.marginnote {
-  float: right;
-  clear: right;
-  margin-right: -60%;
-  width: 70%;
-  margin-top: 0.3rem;
-  margin-bottom: 0;
-  font-size: 1.1rem;
-  line-height: 1.3;
-  vertical-align: baseline;
-  position: relative;
-}
-
-.sidenote-number {
-  counter-increment: sidenote-counter;
-}
-
-.sidenote-number:after,
-.sidenote:before {
-  font-family: et-book-roman-old-style;
-  position: relative;
-  vertical-align: baseline;
-}
-
-.sidenote-number:after {
-  content: counter(sidenote-counter);
-  font-size: 1rem;
-  top: -0.5rem;
-  left: 0.1rem;
-}
-
-.sidenote:before {
-  content: counter(sidenote-counter) " ";
-  font-size: 1rem;
-  top: -0.5rem;
-}
-
-blockquote .sidenote,
-blockquote .marginnote {
-  margin-right: -82%;
-  min-width: 59%;
-  text-align: left;
-}
-
-div.fullwidth,
-table.fullwidth {
-  width: 100%;
-}
-
-div.table-wrapper {
-  overflow-x: auto;
-  font-family: "Trebuchet MS", "Gill Sans", "Gill Sans MT", sans-serif;
-}
-
-.sans {
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
-  letter-spacing: .03em;
-}
-
-.sans > code {
-  font-size: 1.2rem;
+  max-width: 90%;
 }
 
 h1 > code,
@@ -344,32 +196,9 @@ h3 > code {
   font-size: 0.80em;
 }
 
-.marginnote > code,
-.sidenote > code {
-  font-size: 1rem;
-}
-
-.fullwidth {
-  max-width: 90%;
-  clear:both;
-}
-
-span.newthought {
-  font-variant: small-caps;
-  font-size: 1.2em;
-}
-
-input.margin-toggle {
-  display: none;
-}
-
-label.sidenote-number {
-  display: inline-block;
-  max-height: 2rem; /* should be less than or equal to paragraph line-height */
-}
-
-label.margin-toggle:not(.sidenote-number) {
-  display: none;
+pre {
+  width: 90%;
+  margin-left: 5%;
 }
 
 .iframe-wrapper {
@@ -387,81 +216,39 @@ label.margin-toggle:not(.sidenote-number) {
   height: 100%;
 }
 
-pre > code {
-  width: 80%;
+hr,
+footer,
+table,
+dl,
+ol,
+ul {
+  width: 90%;
 }
 
-@media (max-width: 760px) {
+pre {
+  width: 90%;
+}
+
+figure {
+  max-width: 90%;
+}
+
+label {
+  cursor: pointer;
+}
+
+table {
+  width: 85%;
+}
+
+@media (prefers-color-scheme: dark) {
   body {
-    width: 84%;
-    padding-left: 8%;
-    padding-right: 8%;
+    background-color: #151515;
+    color: #ddd;
+  }
+  a:link {
+    text-shadow: 0.03em 0 #151515, -0.03em 0 #151515, 0 0.03em #151515, 0 -0.03em #151515, 0.06em 0 #151515, -0.06em 0 #151515, 0.09em 0 #151515, -0.09em 0 #151515, 0.12em 0 #151515, -0.12em 0 #151515, 0.15em 0 #151515, -0.15em 0 #151515;
   }
 
-  hr,
-  section > p,
-  section > footer,
-  section > table {
-    width: 100%;
-  }
-
-  section > dl,
-  section > ol,
-  section > ul {
-    width: 90%;
-  }
-
-  figure {
-    max-width: 90%;
-  }
-
-  figcaption,
-  figure.fullwidth figcaption {
-    margin-right: 0%;
-    max-width: none;
-  }
-
-  blockquote {
-    margin-left: 1.5em;
-    margin-right: 0em;
-  }
-
-  blockquote p,
-  blockquote footer {
-    width: 100%;
-  }
-
-  label.margin-toggle:not(.sidenote-number) {
-    display: inline;
-  }
-
-  .sidenote,
-  .marginnote {
-    display: none;
-  }
-
-  .margin-toggle:checked + .sidenote,
-  .margin-toggle:checked + .marginnote {
-    display: block;
-    float: left;
-    left: 1rem;
-    clear: both;
-    width: 95%;
-    margin: 1rem 2.5%;
-    vertical-align: baseline;
-    position: relative;
-  }
-
-  label {
-    cursor: pointer;
-  }
-
-  div.table-wrapper,
-  table {
-    width: 85%;
-  }
-
-  img {
-    width: 100%;
-  }
 }
+
