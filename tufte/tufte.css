@@ -37,8 +37,26 @@
 }
 
 .weblog-header-item {
-  display: inline-block;
+    display: inline-block;
+    margin-inline-start: 0.5rem;
+    margin-block-start: 1rem;
+    font-size: 1.1em;
 }
+
+.weblog-header-item::after {
+    content: " · ";
+    margin-inline-start: 0.5rem;
+}
+
+.weblog-header-item::after {
+    content: " · ";
+    margin-inline-start: 0.5rem;
+}
+
+.weblog-header-item:list-child::after {
+    display: none;
+}
+
 
 html {
   font-size: 14px;
