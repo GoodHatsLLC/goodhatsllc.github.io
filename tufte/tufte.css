@@ -165,17 +165,17 @@ div.epigraph > blockquote > footer > cite {
 /* end chapter epigraphs styles */
 
 blockquote {
+  width: 80%;
+  padding: 0.7rem 1rem;
   font-size: 1.4rem;
   background-color: #ffffff11;
 }
 
 blockquote p {
-  width: 80%;
   margin-right: 40px;
 }
 
 blockquote footer {
-  width: 80%;
   font-size: 1.1rem;
   text-align: right;
 }
