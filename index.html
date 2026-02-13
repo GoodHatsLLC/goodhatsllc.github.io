@@ -1,64 +1,373 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>Good Hats, LLC 🧢</title>
-  <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>24-Hour Clock</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@300;400&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
   body {
-    background-color: linen;
+    background: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100dvh;
+    overflow: hidden;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
   }
 
-  a:link, a:visited {
-    color: maroon;
-    text-decoration-line: none;
+  canvas {
+    display: block;
+    max-width: 100vmin;
+    max-height: 100vmin;
   }
-  a:hover {
-    text-decoration-line: underline;
+
+  .tz-toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    color: rgba(255,255,255,0.7);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    padding: 0.5rem 1.2rem;
+    border-radius: 100px;
+    border: 1px solid rgba(255,255,255,0.06);
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    pointer-events: none;
   }
-  a#hat {
-    font-size: 3em;
-    text-align: center;
+
+  .tz-toast.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
   }
-  span#goodhatsllc {
-    font-weight: bold;
-  }
-  </style>
+</style>
 </head>
 <body>
-<center>
-<pre>
- ┌──────────────────────────────────────────────────────┐
- │                                   __                 │
- │                                  /\ \                │
- │            __     ___     ___    \_\ \               │
- │          /'_ `\  / __`\  / __`\  /'_` \              │
- │         /\ \L\ \/\ \L\ \/\ \L\ \/\ \L\ \             │
- │         \ \____ \ \____/\ \____/\ \___,_\            │
- │          \/___L\ \/___/  \/___/  \/__,_ /            │
- │            /\____/                                   │
- │            \_/__/                                    │
- │          __                __                        │
- │         /\ \              /\ \__                     │
- │         \ \ \___      __  \ \ ,_\   ____             │
- │          \ \  _ `\  /'__`\ \ \ \/  /',__\            │
- │           \ \ \ \ \/\ \L\.\_\ \ \_/\__, `\           │
- │            \ \_\ \_\ \__/.\_\\ \__\/\____/           │
- │             \/_/\/_/\/__/\/_/ \/__/\/___/            │
- │                                                      │
- │               ___    ___                             │
- │              /\_ \  /\_ \                            │
- │              \//\ \ \//\ \     ___                   │
- │                \ \ \  \ \ \   /'___\                 │
- │                 \_\ \_ \_\ \_/\ \__/                 │
- │                 /\____\/\____\ \____\                │
- │                 \/____/\/____/\/____/                │
- │                                                      │
- │                                                      │
- │ ┌──────────────────────────────────────────────────┐ │
- │ │      <span id="goodhatsllc">Good Hats, LLC</span> is a San Francisco based     │ │
- │ │      software company.                           │ │
- │ └──────────────────────────────────────────────────┘ │
- └──────────────────────────────────────────────────────┘
-</pre>
-<p><a id="hat" href="https://adam.zethrae.us/">🧢</a></p>
-</center>
+
+<canvas id="clock"></canvas>
+<div class="tz-toast" id="toast"></div>
+
+<script>
+// ─── Timezone Configuration ─────────────────────────────────────
+const TIMEZONES = [
+  { id: "America/Los_Angeles", label: "San Francisco" },
+  { id: "America/New_York",    label: "New York" },
+  { id: "America/New_York",    label: "Toronto" },
+  { id: "Europe/London",       label: "London" },
+  { id: "Europe/Stockholm",        label: "Stockholm" },
+  { id: "Asia/Hong_Kong",        label: "Hong Kong" },
+  { id: "Asia/Tokyo",          label: "Tokyo" },
+  { id: "Pacific/Auckland",    label: "Auckland" }
+];
+// ────────────────────────────────────────────────────────────────
+
+let tzIndex = 0;
+
+// Try to default to user's local timezone
+const localTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+const localIdx = TIMEZONES.findIndex(t => t.id === localTz);
+if (localIdx >= 0) tzIndex = localIdx;
+
+const canvas = document.getElementById('clock');
+const ctx = canvas.getContext('2d');
+const toast = document.getElementById('toast');
+
+let dpr = window.devicePixelRatio || 1;
+let size, cx, cy, radius;
+
+function resize() {
+  dpr = window.devicePixelRatio || 1;
+  const vmin = Math.min(window.innerWidth, window.innerHeight);
+  size = Math.floor(vmin * 0.88);
+  canvas.width = size * dpr;
+  canvas.height = size * dpr;
+  canvas.style.width = size + 'px';
+  canvas.style.height = size + 'px';
+  cx = (size * dpr) / 2;
+  cy = (size * dpr) / 2;
+  radius = cx * 0.92;
+}
+
+window.addEventListener('resize', resize);
+resize();
+
+// ─── Toast ──────────────────────────────────────────────────────
+let toastTimer = null;
+function showToast(text) {
+  toast.textContent = text;
+  toast.classList.add('visible');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('visible'), 2000);
+}
+
+// ─── Transition state ───────────────────────────────────────────
+const TWO_PI = Math.PI * 2;
+const TRANSITION_MS = 900;
+
+let transition = null; // { fromAngles, startTime, fromLabel, toLabel }
+
+function easeInOutCubic(t) {
+  return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+}
+
+function shortestAngleDelta(from, to) {
+  let d = ((to - from) % TWO_PI + TWO_PI) % TWO_PI;
+  if (d > Math.PI) d -= TWO_PI;
+  return d;
+}
+
+function lerpAngle(from, to, t) {
+  return from + shortestAngleDelta(from, to) * t;
+}
+
+// ─── Timezone cycling ───────────────────────────────────────────
+document.body.addEventListener('click', () => {
+  // Snapshot current drawn angles before switching
+  const cur = getAnglesForZone(tzIndex);  // snapshot current hand positions
+  const oldLabel = TIMEZONES[tzIndex].label;
+  const oldDay = getDayInZone(tzIndex);
+
+  tzIndex = (tzIndex + 1) % TIMEZONES.length;
+
+  transition = {
+    fromAngles: cur,
+    startTime: performance.now(),
+    fromLabel: oldLabel,
+    toLabel: TIMEZONES[tzIndex].label,
+    fromDay: oldDay,
+    toDay: getDayInZone(tzIndex)
+  };
+
+  showToast(TIMEZONES[tzIndex].id);
+});
+
+// ─── Get day of week in a timezone ──────────────────────────────
+function getDayInZone(idx) {
+  const tz = TIMEZONES[idx !== undefined ? idx : tzIndex].id;
+  return new Date().toLocaleDateString('en-US', { timeZone: tz, weekday: 'long' }).toUpperCase();
+}
+
+// ─── Get time in a timezone ─────────────────────────────────────
+function getTimeInZone(idx) {
+  const tz = TIMEZONES[idx !== undefined ? idx : tzIndex].id;
+  const now = new Date();
+  const parts = {};
+  const fmt = new Intl.DateTimeFormat('en-US', {
+    timeZone: tz,
+    hour: 'numeric', minute: 'numeric', second: 'numeric',
+    fractionalSecondDigits: 3,
+    hour12: false
+  });
+  for (const p of fmt.formatToParts(now)) {
+    parts[p.type] = p.value;
+  }
+  const h = parseInt(parts.hour);
+  const m = parseInt(parts.minute);
+  const s = parseInt(parts.second);
+  const ms = parseInt(parts.fractionalSecond || '0');
+  return { h: h === 24 ? 0 : h, m, s, ms };
+}
+
+function getAnglesForZone(idx) {
+  const { h, m, s: sec, ms } = getTimeInZone(idx);
+  const smoothSec = sec + ms / 1000;
+  const smoothMin = m + smoothSec / 60;
+  const smoothHour = h + smoothMin / 60;
+  return {
+    hourAngle: (smoothHour / 24) * TWO_PI,
+    minAngle:  (smoothMin / 60) * TWO_PI,
+    secAngle:  (smoothSec / 60) * TWO_PI,
+    h, m, sec, smoothHour, smoothMin, smoothSec
+  };
+}
+
+// ─── Drawing helpers ────────────────────────────────────────────
+const s = (v) => v * dpr;  // scale helper
+
+function drawCircle(x, y, r, fill, stroke, lineWidth) {
+  ctx.beginPath();
+  ctx.arc(x, y, r, 0, Math.PI * 2);
+  if (fill) { ctx.fillStyle = fill; ctx.fill(); }
+  if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = lineWidth || 1; ctx.stroke(); }
+}
+
+function drawHand(angle, length, width, color, rounded, shadow) {
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.rotate(angle);
+  ctx.beginPath();
+  ctx.moveTo(0, radius * 0.06);
+  ctx.lineTo(0, -length);
+  ctx.strokeStyle = color;
+  ctx.lineWidth = width;
+  ctx.lineCap = rounded ? 'round' : 'butt';
+  if (shadow) {
+    ctx.shadowColor = 'rgba(0,0,0,0.25)';
+    ctx.shadowBlur = s(8);
+    ctx.shadowOffsetX = s(2);
+    ctx.shadowOffsetY = s(2);
+  }
+  ctx.stroke();
+  ctx.restore();
+}
+
+// ─── Main draw ──────────────────────────────────────────────────
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // ── Compute target angles (live time in current zone) ──
+  const target = getAnglesForZone(tzIndex);
+  let hourAngle = target.hourAngle;
+  let minAngle  = target.minAngle;
+  let secAngle  = target.secAngle;
+  let labelText = TIMEZONES[tzIndex].label.toUpperCase();
+  let labelAlpha = 1;
+  let dayText = getDayInZone(tzIndex);
+  let dayAlpha = 1;
+
+  // ── Animate transition between timezones ──
+  let tProgress = 1;
+  if (transition) {
+    const elapsed = performance.now() - transition.startTime;
+    tProgress = Math.min(elapsed / TRANSITION_MS, 1);
+    const eased = easeInOutCubic(tProgress);
+
+    hourAngle = lerpAngle(transition.fromAngles.hourAngle, target.hourAngle, eased);
+    minAngle  = lerpAngle(transition.fromAngles.minAngle,  target.minAngle,  eased);
+    // Second hand always live — seconds don't change between timezones
+
+    // Crossfade labels: fade out old in first half, fade in new in second half
+    if (tProgress < 0.5) {
+      labelText = transition.fromLabel.toUpperCase();
+      labelAlpha = 1 - (tProgress * 2);
+      dayText = transition.fromDay;
+      dayAlpha = 1 - (tProgress * 2);
+    } else {
+      labelText = transition.toLabel.toUpperCase();
+      labelAlpha = (tProgress - 0.5) * 2;
+      dayText = transition.toDay;
+      dayAlpha = (tProgress - 0.5) * 2;
+    }
+
+    if (tProgress >= 1) transition = null;
+  }
+
+  // ── Background shadow ──
+  ctx.save();
+  ctx.shadowColor = 'rgba(0,0,0,0.5)';
+  ctx.shadowBlur = s(40);
+  drawCircle(cx, cy, radius, '#fafaf8', null);
+  ctx.restore();
+
+  // ── Outer ring ──
+  drawCircle(cx, cy, radius, null, '#e0ddd8', s(1));
+  drawCircle(cx, cy, radius * 1.01, null, '#c8c4be', s(2));
+
+  // ── Tick marks ──
+  for (let i = 0; i < 240; i++) {
+    const angle = (i / 240) * Math.PI * 2 - Math.PI / 2;
+    const isHour = i % 10 === 0;
+    const isFiveMin = i % 2 === 0;
+    let innerR, outerR, lw, color;
+
+    if (isHour) {
+      innerR = radius * 0.85;
+      outerR = radius * 0.95;
+      lw = s(2.2);
+      color = '#222';
+    } else if (isFiveMin) {
+      innerR = radius * 0.90;
+      outerR = radius * 0.95;
+      lw = s(1.2);
+      color = '#555';
+    } else {
+      innerR = radius * 0.92;
+      outerR = radius * 0.95;
+      lw = s(0.7);
+      color = '#999';
+    }
+
+    ctx.beginPath();
+    ctx.moveTo(cx + Math.cos(angle) * innerR, cy + Math.sin(angle) * innerR);
+    ctx.lineTo(cx + Math.cos(angle) * outerR, cy + Math.sin(angle) * outerR);
+    ctx.strokeStyle = color;
+    ctx.lineWidth = lw;
+    ctx.stroke();
+  }
+
+  // ── Hour numbers (1-24) ──
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+
+  for (let i = 1; i <= 24; i++) {
+    const angle = (i / 24) * Math.PI * 2 - Math.PI / 2;
+    const numR = radius * 0.76;
+    const x = cx + Math.cos(angle) * numR;
+    const y = cy + Math.sin(angle) * numR;
+    const fontSize = radius * 0.095;
+
+    ctx.font = `700 ${fontSize}px 'DM Sans', sans-serif`;
+    ctx.fillStyle = '#1a1a1a';
+    ctx.fillText(i.toString(), x, y);
+  }
+
+  // ── Timezone label (crossfade) ──
+  const labelSize = radius * 0.065;
+  ctx.font = `500 ${labelSize}px 'DM Sans', sans-serif`;
+  const baseR = 184, baseG = 180, baseB = 174; // #b8b4ae
+  ctx.fillStyle = `rgba(${baseR},${baseG},${baseB},${labelAlpha})`;
+  ctx.letterSpacing = `${s(2)}px`;
+  ctx.fillText(labelText, cx, cy - radius * 0.32);
+  ctx.letterSpacing = '0px';
+
+  // ── Day of week label ──
+  const daySize = radius * 0.055;
+  ctx.font = `400 ${daySize}px 'DM Sans', sans-serif`;
+  ctx.fillStyle = `rgba(184,180,174,${dayAlpha})`;
+  ctx.letterSpacing = `${s(2)}px`;
+  ctx.fillText(dayText, cx, cy + radius * 0.28);
+  ctx.letterSpacing = '0px';
+
+  // ── Hands ──
+  drawHand(hourAngle, radius * 0.52, s(5.5), '#1a1a1a', true, true);
+  drawHand(minAngle, radius * 0.70, s(3.8), '#1a1a1a', true, true);
+  drawHand(secAngle, radius * 0.78, s(1.3), '#d63031', false, false);
+
+  // Second hand tail
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.rotate(secAngle);
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.lineTo(0, radius * 0.14);
+  ctx.strokeStyle = '#d63031';
+  ctx.lineWidth = s(1.3);
+  ctx.lineCap = 'round';
+  ctx.stroke();
+  ctx.restore();
+
+  // Center cap
+  drawCircle(cx, cy, s(7), '#d63031', null);
+  drawCircle(cx, cy, s(3), '#fff', null);
+
+  requestAnimationFrame(draw);
+}
+
+// Show initial timezone
+showToast(TIMEZONES[tzIndex].id);
+draw();
+</script>
 </body>
 </html>
