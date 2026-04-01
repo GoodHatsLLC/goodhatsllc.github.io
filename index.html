@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Good Hats, LLC</title>
+    <meta
+      name="description"
+      content="Good Hats, LLC is a portfolio site for selected software projects."
+    />
+    <meta name="theme-color" content="#b7b1a8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header slab accent-cyan">
+        <a class="brand" href="#top">GOOD HATS, LLC</a>
+        <p class="header-tag">PORTFOLIO / SELECTED SOFTWARE PROJECTS</p>
+        <nav class="site-nav" aria-label="Primary">
+          <a href="#about">ABOUT</a>
+          <a href="#projects">PROJECTS</a>
+        </nav>
+      </header>
+
+      <main id="top">
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-copy slab accent-pink">
+            <p class="eyebrow">GOOD HATS, LLC / PORTFOLIO</p>
+            <h1 id="hero-title">
+              THIS IS THE PORTFOLIO.
+              <span>SOFTWARE FIRST. HAT NOISE SECOND.</span>
+            </h1>
+            <p class="lede">
+              Good Hats, LLC makes software. This site is the public rack for
+              selected projects, live experiments, and whatever else earns the
+              slot.
+            </p>
+
+            <div class="hero-actions">
+              <a class="button button-primary" href="#projects">SEE PROJECTS</a>
+              <a
+                class="button button-secondary"
+                href="https://replayer.cam"
+                target="_blank"
+                rel="noreferrer"
+              >
+                OPEN REPLAYER.CAM
+              </a>
+            </div>
+
+            <ul class="hero-list" aria-label="Quick facts">
+              <li>PROJECTS</li>
+              <li>EXPERIMENTS</li>
+              <li>NO MERCH</li>
+            </ul>
+          </div>
+
+          <div class="hero-stage slab accent-lime">
+            <p class="scene-status" data-scene-status>LOADING HAT MESH</p>
+            <div class="scene-root" data-scene-root aria-hidden="true"></div>
+            <div class="stage-note">
+              <p class="stage-kicker">REAL CAP MESH</p>
+              <p>
+                Actual model. Concrete finish. Bright accents kept on a short
+                leash.
+              </p>
+            </div>
+            <noscript>
+              <p class="scene-fallback">
+                The 3D scene is optional. The portfolio is still about software
+                projects.
+              </p>
+            </noscript>
+          </div>
+        </section>
+
+        <section class="about" id="about" aria-labelledby="about-title">
+          <div class="section-head">
+            <p class="eyebrow">WHAT THIS IS</p>
+            <h2 id="about-title">
+              A portfolio for software projects with enough edge to keep.
+            </h2>
+          </div>
+
+          <div class="about-grid">
+            <article class="slab accent-cyan statement-card">
+              <p class="statement-number">01</p>
+              <h3>PROJECTS.</h3>
+              <p>Shipped work, live experiments, and future case studies.</p>
+            </article>
+
+            <article class="slab accent-pink statement-card">
+              <p class="statement-number">02</p>
+              <h3>DIRECT.</h3>
+              <p>Short copy. Hard edges. No fake mythology around the work.</p>
+            </article>
+
+            <article class="slab accent-lime statement-card">
+              <p class="statement-number">03</p>
+              <h3>HONEST.</h3>
+              <p>The name implies hats. The company makes software. Both are true.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="projects" id="projects" aria-labelledby="projects-title">
+          <div class="section-head">
+            <p class="eyebrow">SELECTED PROJECTS</p>
+            <h2 id="projects-title">ONE LIVE PROJECT. THREE EMPTY SLOTS.</h2>
+            <p class="section-copy">
+              They stay empty until something good enough shows up.
+            </p>
+          </div>
+
+          <div class="project-grid">
+            <a
+              class="slab accent-pink project-card project-card-live"
+              href="https://replayer.cam"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <div class="project-media">
+                <img src="./replayer.png" alt="replayer.cam project artwork" />
+              </div>
+
+              <div class="project-copy">
+                <p class="project-number">PROJECT 01 / LIVE</p>
+                <h3>replayer.cam</h3>
+                <p>
+                  Live project. Live link. Clean mark. Click through and see the
+                  real thing.
+                </p>
+                <span class="project-link">OPEN PROJECT</span>
+              </div>
+            </a>
+
+            <article class="slab accent-cyan project-card project-card-empty">
+              <p class="project-number">PROJECT 02 / OPEN</p>
+              <h3>EMPTY.</h3>
+              <p>Nothing here yet. Better blank than padded.</p>
+            </article>
+
+            <article class="slab accent-lime project-card project-card-empty">
+              <p class="project-number">PROJECT 03 / OPEN</p>
+              <h3>VACANT.</h3>
+              <p>The next project can have this slot when it earns it.</p>
+            </article>
+
+            <article class="slab accent-pink project-card project-card-empty">
+              <p class="project-number">PROJECT 04 / OPEN</p>
+              <h3>WAITING.</h3>
+              <p>More work later. No filler now.</p>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer slab accent-cyan">
+        <p>GOOD HATS, LLC. SOFTWARE PROJECTS. NO HAT INVENTORY.</p>
+        <p class="asset-credit">
+          Hat mesh:
+          <a href="https://poly.pizza/m/aWxhfEnYwl" target="_blank" rel="noreferrer"
+            >Cap</a
+          >
+          by J-Toastie,
+          <a
+            href="https://creativecommons.org/licenses/by/3.0/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            CC BY 3.0
+          </a>
+          via Poly Pizza.
+        </p>
+      </footer>
+    </div>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
