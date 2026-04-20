@@ -48,76 +48,9 @@ if (sceneRoot) {
     scene.add(ambientLight, keyLight, fillLight, rimLight);
 
     const rig = new THREE.Group();
-    const stageGroup = new THREE.Group();
     const hatRig = new THREE.Group();
-    rig.add(stageGroup, hatRig);
+    rig.add(hatRig);
     scene.add(rig);
-
-    const concreteLight = new THREE.MeshStandardMaterial({
-      color: 0xd9d6d0,
-      roughness: 1,
-      metalness: 0,
-    });
-    const concreteDark = new THREE.MeshStandardMaterial({
-      color: 0x6f6a64,
-      roughness: 1,
-      metalness: 0,
-    });
-    const inkMaterial = new THREE.MeshStandardMaterial({
-      color: 0x1e1e1e,
-      roughness: 0.92,
-      metalness: 0.02,
-    });
-    const warmMaterial = new THREE.MeshStandardMaterial({
-      color: 0xf8a348,
-      roughness: 0.82,
-      metalness: 0.04,
-    });
-    const redMaterial = new THREE.MeshStandardMaterial({
-      color: 0xdb4a2b,
-      roughness: 0.8,
-      metalness: 0.04,
-    });
-
-    const plinth = new THREE.Mesh(
-      new THREE.BoxGeometry(4.8, 0.62, 4.2),
-      concreteDark,
-    );
-    plinth.position.set(0, -2.3, 0);
-    plinth.rotation.y = Math.PI * 0.07;
-    stageGroup.add(plinth);
-
-    const slab = new THREE.Mesh(
-      new THREE.BoxGeometry(3.9, 0.28, 3.2),
-      concreteLight,
-    );
-    slab.position.set(0, -1.92, 0.14);
-    slab.rotation.y = -Math.PI * 0.06;
-    stageGroup.add(slab);
-
-    const warmBar = new THREE.Mesh(
-      new THREE.BoxGeometry(0.22, 3.8, 0.22),
-      warmMaterial,
-    );
-    warmBar.position.set(-2.45, 0.05, -0.8);
-    warmBar.rotation.z = Math.PI * 0.05;
-    stageGroup.add(warmBar);
-
-    const redBar = new THREE.Mesh(
-      new THREE.BoxGeometry(3.6, 0.18, 0.18),
-      redMaterial,
-    );
-    redBar.position.set(0.85, 1.5, -0.95);
-    redBar.rotation.set(0.12, -0.18, -0.08);
-    stageGroup.add(redBar);
-
-    const inkBlock = new THREE.Mesh(
-      new THREE.BoxGeometry(0.7, 0.7, 0.7),
-      inkMaterial,
-    );
-    inkBlock.position.set(1.95, -1.2, 1.25);
-    inkBlock.rotation.set(0.3, 0.56, 0.15);
-    stageGroup.add(inkBlock);
 
     rig.rotation.set(0.04, -0.18, 0.04);
     rig.position.y = -0.35;
@@ -184,10 +117,10 @@ if (sceneRoot) {
         model.position.sub(tempCenter);
 
         const maxDimension = Math.max(tempSize.x, tempSize.y, tempSize.z);
-        const scale = 4.4 / maxDimension;
+        const scale = (mobileQuery.matches ? 4.6 : 6.2) / maxDimension;
         model.scale.setScalar(scale);
         model.rotation.set(-0.62, -0.42, 0.08);
-        model.position.set(0, -0.55, 0.42);
+        model.position.set(0, -0.4, 0.42);
 
         hatRig.add(model);
         state.hatLoaded = true;
@@ -254,8 +187,9 @@ if (sceneRoot) {
     );
     observer.observe(sceneRoot);
 
-    sceneRoot.addEventListener("pointermove", handlePointerMove);
-    sceneRoot.addEventListener("pointerleave", handlePointerLeave);
+    const pointerTarget = heroSection ?? sceneRoot;
+    pointerTarget.addEventListener("pointermove", handlePointerMove);
+    pointerTarget.addEventListener("pointerleave", handlePointerLeave);
     window.addEventListener("resize", resizeScene);
     window.addEventListener("scroll", updateScroll, { passive: true });
     mobileQuery.addEventListener("change", resizeScene);
@@ -286,11 +220,6 @@ if (sceneRoot) {
         0.08,
       );
       rig.position.x = THREE.MathUtils.lerp(rig.position.x, state.pointerX * 0.2, 0.06);
-
-      stageGroup.rotation.y += reducedMotionQuery.matches ? 0.001 : 0.0026;
-      inkBlock.rotation.x += 0.004;
-      inkBlock.rotation.y += 0.006;
-      redBar.rotation.z = -0.08 + Math.sin(elapsed * 0.8) * 0.04;
 
       if (state.hatLoaded) {
         hatRig.rotation.y += reducedMotionQuery.matches ? 0.0012 : 0.0024;

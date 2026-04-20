@@ -22,7 +22,6 @@
       <div class="nav-links">
         <a href="#projects">Projects</a>
         <a href="#about">About</a>
-        <a href="#stage">Stage</a>
       </div>
       <div class="nav-meta">
         <span>MMXXVI / LLC</span>
@@ -31,6 +30,7 @@
 
     <main id="top">
       <section class="hero" aria-labelledby="hero-title">
+        <div class="scene-root" data-scene-root aria-hidden="true"></div>
         <div class="blob-field blob-field-hero" aria-hidden="true">
           <div class="blob blob-a"></div>
           <div class="blob blob-b"></div>
@@ -39,11 +39,20 @@
 
         <div class="hero-top">
           <p class="eyebrow">Portfolio · Selected Software Projects</p>
-          <p class="hero-index" aria-hidden="true">
-            <span>No.</span>
-            <span>01</span>
-          </p>
+          <div class="hero-meta">
+            <p class="scene-status" data-scene-status>Loading hat mesh</p>
+            <p class="hero-index" aria-hidden="true">
+              <span>No.</span><span>01</span>
+            </p>
+          </div>
         </div>
+
+        <noscript>
+          <p class="scene-fallback">
+            The 3D scene is optional. The portfolio is still about software
+            projects.
+          </p>
+        </noscript>
 
         <h1 id="hero-title" class="hero-title">
           <span class="hero-line hero-line-1">Good</span>
@@ -177,7 +186,7 @@
               </div>
               <span class="campaign-arrow" aria-hidden="true">↗</span>
             </a>
-            <a class="campaign-item" href="#stage">
+            <a class="campaign-item" href="#top">
               <div class="campaign-item-copy">
                 <p class="campaign-kicker">03 — Honest</p>
                 <p>The name implies hats. The company makes software.</p>
@@ -185,54 +194,6 @@
               <span class="campaign-arrow" aria-hidden="true">↗</span>
             </a>
           </aside>
-        </div>
-      </section>
-
-      <section class="stage" id="stage" aria-labelledby="stage-title">
-        <div class="stage-grid">
-          <div class="stage-copy">
-            <p class="eyebrow" data-scene-status>Loading hat mesh</p>
-            <h2 id="stage-title" class="stage-title">
-              Real cap.<br /><em>Literal mesh.</em>
-            </h2>
-            <p class="stage-lede">
-              Actual 3D model, rendered live. Cream over red, cut hard against
-              warm blobs. The company does not sell hats.
-            </p>
-            <dl class="stage-specs">
-              <div><dt>Format</dt><dd>GLB / GLTF</dd></div>
-              <div><dt>Renderer</dt><dd>WebGL / Three.js</dd></div>
-              <div><dt>License</dt><dd>CC BY 3.0</dd></div>
-            </dl>
-            <p class="stage-credit">
-              Hat mesh:
-              <a href="https://poly.pizza/m/aWxhfEnYwl" target="_blank" rel="noreferrer"
-                >Cap</a
-              >
-              by J-Toastie,
-              <a
-                href="https://creativecommons.org/licenses/by/3.0/"
-                target="_blank"
-                rel="noreferrer"
-                >CC BY 3.0</a
-              >
-              via Poly Pizza.
-            </p>
-          </div>
-          <div class="stage-viewport">
-            <div class="blob-field blob-field-stage" aria-hidden="true">
-              <div class="blob blob-pink"></div>
-              <div class="blob blob-red"></div>
-            </div>
-            <div class="scene-root" data-scene-root aria-hidden="true"></div>
-            <span class="stage-badge" aria-hidden="true">CAP / 01</span>
-            <noscript>
-              <p class="scene-fallback">
-                The 3D scene is optional. The portfolio is still about software
-                projects.
-              </p>
-            </noscript>
-          </div>
         </div>
       </section>
     </main>
@@ -248,7 +209,7 @@
           <ul>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#about">About</a></li>
-            <li><a href="#stage">Stage</a></li>
+            <li><a href="#top">Top</a></li>
           </ul>
         </div>
         <div class="footer-col">
