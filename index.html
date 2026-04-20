@@ -3,74 +3,229 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Good Hats, LLC</title>
+    <title>Good Hats, LLC — Portfolio</title>
     <meta
       name="description"
       content="Good Hats, LLC is a portfolio site for selected software projects."
     />
-    <meta name="theme-color" content="#b7b1a8" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta name="theme-color" content="#E4E2DD" />
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;500;700&display=swap"
+      href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <div class="page-shell">
-      <header class="site-header">
-        <a class="brand" href="#top">GOOD HATS, LLC</a>
-        <p class="header-tag">PORTFOLIO / SELECTED SOFTWARE PROJECTS</p>
-        <nav class="site-nav" aria-label="Primary">
-          <a href="#about">ABOUT</a>
-          <a href="#projects">PROJECTS</a>
-        </nav>
-      </header>
+    <nav class="site-nav" aria-label="Primary">
+      <a class="brand" href="#top">GOOD&nbsp;HATS</a>
+      <div class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#stage">Stage</a>
+      </div>
+      <div class="nav-meta">
+        <span>MMXXVI / LLC</span>
+      </div>
+    </nav>
 
-      <main id="top">
-        <section class="hero" aria-labelledby="hero-title">
-          <div class="hero-copy slab accent-pink">
-            <p class="eyebrow">GOOD HATS, LLC / PORTFOLIO</p>
-            <h1 id="hero-title">
-              THIS IS THE PORTFOLIO.
-              <span>SOFTWARE FIRST. HAT NOISE SECOND.</span>
-            </h1>
-            <p class="lede">
-              Good Hats, LLC makes software. This site is the public rack for
-              selected projects, live experiments, and whatever else earns the
-              slot.
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="blob-field blob-field-hero" aria-hidden="true">
+          <div class="blob blob-a"></div>
+          <div class="blob blob-b"></div>
+          <div class="blob blob-c"></div>
+        </div>
+
+        <div class="hero-top">
+          <p class="eyebrow">Portfolio · Selected Software Projects</p>
+          <p class="hero-index" aria-hidden="true">
+            <span>No.</span>
+            <span>01</span>
+          </p>
+        </div>
+
+        <h1 id="hero-title" class="hero-title">
+          <span class="hero-line hero-line-1">Good</span>
+          <span class="hero-line hero-line-2">Hats.</span>
+        </h1>
+
+        <p class="hero-byline">
+          Software first<span class="hero-dot" aria-hidden="true"></span>Hat noise second
+        </p>
+
+        <div class="hero-bottom">
+          <p class="hero-lede">
+            Good Hats, LLC makes software. This site is the public rack for
+            selected projects, live experiments, and whatever else earns the
+            slot.
+          </p>
+          <div class="hero-actions">
+            <a class="cta cta-fill" href="#projects">
+              <span class="cta-label">See Projects</span>
+              <span class="cta-arrow" aria-hidden="true">→</span>
+            </a>
+            <a
+              class="cta cta-link"
+              href="https://replayer.cam"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span>Open replayer.cam</span>
+              <span class="cta-arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="divider" aria-hidden="true">
+        <div class="blob-field blob-field-divider">
+          <div class="blob blob-warm"></div>
+        </div>
+        <p class="divider-kicker">Catalogue</p>
+        <h2 class="divider-title">Projects</h2>
+        <p class="divider-meta">04 slots · 01 live · 03 open</p>
+      </section>
+
+      <section class="projects" id="projects" aria-labelledby="projects-title">
+        <header class="section-head">
+          <div>
+            <p class="eyebrow">Selected Work</p>
+            <h2 id="projects-title" class="section-title">
+              One live.<br /><em>Three open slots.</em>
+            </h2>
+          </div>
+          <p class="section-copy">
+            They stay empty until something good enough shows up. Better blank
+            than padded.
+          </p>
+        </header>
+
+        <div class="project-grid">
+          <a
+            class="project project-live"
+            href="https://replayer.cam"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <div class="project-media">
+              <img src="./replayer.png" alt="replayer.cam project artwork" />
+              <span class="project-status">Live</span>
+            </div>
+            <div class="project-meta">
+              <p class="project-index">01 / Live</p>
+              <h3 class="project-name">Replayer.cam</h3>
+              <p class="project-price">Open project ↗</p>
+            </div>
+          </a>
+
+          <article class="project project-empty">
+            <div class="project-media">
+              <span class="project-placeholder" aria-hidden="true">02</span>
+            </div>
+            <div class="project-meta">
+              <p class="project-index">02 / Open</p>
+              <h3 class="project-name">Empty.</h3>
+              <p class="project-price">Available</p>
+            </div>
+          </article>
+
+          <article class="project project-empty">
+            <div class="project-media">
+              <span class="project-placeholder" aria-hidden="true">03</span>
+            </div>
+            <div class="project-meta">
+              <p class="project-index">03 / Open</p>
+              <h3 class="project-name">Vacant.</h3>
+              <p class="project-price">Available</p>
+            </div>
+          </article>
+
+          <article class="project project-empty">
+            <div class="project-media">
+              <span class="project-placeholder" aria-hidden="true">04</span>
+            </div>
+            <div class="project-meta">
+              <p class="project-index">04 / Open</p>
+              <h3 class="project-name">Waiting.</h3>
+              <p class="project-price">Available</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="campaign" id="about" aria-labelledby="about-title">
+        <div class="campaign-grid">
+          <div class="campaign-main">
+            <p class="eyebrow">What this is</p>
+            <h2 id="about-title" class="campaign-title">
+              A portfolio for software with enough edge to keep.
+            </h2>
+          </div>
+          <aside class="campaign-side" aria-label="Principles">
+            <a class="campaign-item" href="#projects">
+              <div class="campaign-item-copy">
+                <p class="campaign-kicker">01 — Projects</p>
+                <p>Shipped work, live experiments, future case studies.</p>
+              </div>
+              <span class="campaign-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="campaign-item" href="#projects">
+              <div class="campaign-item-copy">
+                <p class="campaign-kicker">02 — Direct</p>
+                <p>Short copy. Hard edges. No fake mythology around the work.</p>
+              </div>
+              <span class="campaign-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="campaign-item" href="#stage">
+              <div class="campaign-item-copy">
+                <p class="campaign-kicker">03 — Honest</p>
+                <p>The name implies hats. The company makes software.</p>
+              </div>
+              <span class="campaign-arrow" aria-hidden="true">↗</span>
+            </a>
+          </aside>
+        </div>
+      </section>
+
+      <section class="stage" id="stage" aria-labelledby="stage-title">
+        <div class="stage-grid">
+          <div class="stage-copy">
+            <p class="eyebrow" data-scene-status>Loading hat mesh</p>
+            <h2 id="stage-title" class="stage-title">
+              Real cap.<br /><em>Literal mesh.</em>
+            </h2>
+            <p class="stage-lede">
+              Actual 3D model, rendered live. Cream over red, cut hard against
+              warm blobs. The company does not sell hats.
             </p>
-
-            <div class="hero-actions">
-              <a class="button button-primary" href="#projects">SEE PROJECTS</a>
+            <dl class="stage-specs">
+              <div><dt>Format</dt><dd>GLB / GLTF</dd></div>
+              <div><dt>Renderer</dt><dd>WebGL / Three.js</dd></div>
+              <div><dt>License</dt><dd>CC BY 3.0</dd></div>
+            </dl>
+            <p class="stage-credit">
+              Hat mesh:
+              <a href="https://poly.pizza/m/aWxhfEnYwl" target="_blank" rel="noreferrer"
+                >Cap</a
+              >
+              by J-Toastie,
               <a
-                class="button button-secondary"
-                href="https://replayer.cam"
+                href="https://creativecommons.org/licenses/by/3.0/"
                 target="_blank"
                 rel="noreferrer"
+                >CC BY 3.0</a
               >
-                OPEN REPLAYER.CAM
-              </a>
-            </div>
-
-            <ul class="hero-list" aria-label="Quick facts">
-              <li>PROJECTS</li>
-              <li>EXPERIMENTS</li>
-              <li>NO MERCH</li>
-            </ul>
+              via Poly Pizza.
+            </p>
           </div>
-
-          <div class="hero-stage slab accent-lime">
-            <p class="scene-status" data-scene-status>LOADING HAT MESH</p>
-            <div class="scene-root" data-scene-root aria-hidden="true"></div>
-            <div class="stage-note">
-              <p class="stage-kicker">REAL CAP MESH</p>
-              <p>
-                Actual model. Concrete finish. Bright accents kept on a short
-                leash.
-              </p>
+          <div class="stage-viewport">
+            <div class="blob-field blob-field-stage" aria-hidden="true">
+              <div class="blob blob-pink"></div>
+              <div class="blob blob-red"></div>
             </div>
+            <div class="scene-root" data-scene-root aria-hidden="true"></div>
+            <span class="stage-badge" aria-hidden="true">CAP / 01</span>
             <noscript>
               <p class="scene-fallback">
                 The 3D scene is optional. The portfolio is still about software
@@ -78,108 +233,49 @@
               </p>
             </noscript>
           </div>
-        </section>
+        </div>
+      </section>
+    </main>
 
-        <section class="about" id="about" aria-labelledby="about-title">
-          <div class="section-head">
-            <p class="eyebrow">WHAT THIS IS</p>
-            <h2 id="about-title">
-              A portfolio for software projects with enough edge to keep.
-            </h2>
-          </div>
-
-          <div class="about-grid">
-            <article class="statement-card statement-card-cyan">
-              <p class="statement-number">01</p>
-              <h3>PROJECTS.</h3>
-              <p>Shipped work, live experiments, and future case studies.</p>
-            </article>
-
-            <article class="statement-card statement-card-pink">
-              <p class="statement-number">02</p>
-              <h3>DIRECT.</h3>
-              <p>Short copy. Hard edges. No fake mythology around the work.</p>
-            </article>
-
-            <article class="statement-card statement-card-lime">
-              <p class="statement-number">03</p>
-              <h3>HONEST.</h3>
-              <p>The name implies hats. The company makes software.</p>
-            </article>
-          </div>
-        </section>
-
-        <section class="projects" id="projects" aria-labelledby="projects-title">
-          <div class="section-head">
-            <p class="eyebrow">SELECTED PROJECTS</p>
-            <h2 id="projects-title">ONE LIVE PROJECT. THREE EMPTY SLOTS.</h2>
-            <p class="section-copy">
-              They stay empty until something good enough shows up.
-            </p>
-          </div>
-
-          <div class="project-grid">
-            <a
-              class="slab accent-pink project-card project-card-live"
-              href="https://replayer.cam"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <div class="project-media">
-                <img src="./replayer.png" alt="replayer.cam project artwork" />
-              </div>
-
-              <div class="project-copy">
-                <p class="project-number">PROJECT 01 / LIVE</p>
-                <h3>replayer.cam</h3>
-                <p>
-                  Live project. Live link. Clean mark. Click through and see the
-                  real thing.
-                </p>
-                <span class="project-link">OPEN PROJECT</span>
-              </div>
-            </a>
-
-            <article class="slab accent-cyan project-card project-card-empty">
-              <p class="project-number">PROJECT 02 / OPEN</p>
-              <h3>EMPTY.</h3>
-              <p>Nothing here yet. Better blank than padded.</p>
-            </article>
-
-            <article class="slab accent-lime project-card project-card-empty">
-              <p class="project-number">PROJECT 03 / OPEN</p>
-              <h3>VACANT.</h3>
-              <p>The next project can have this slot when it earns it.</p>
-            </article>
-
-            <article class="slab accent-pink project-card project-card-empty">
-              <p class="project-number">PROJECT 04 / OPEN</p>
-              <h3>WAITING.</h3>
-              <p>More work later. No filler now.</p>
-            </article>
-          </div>
-        </section>
-      </main>
-
-      <footer class="site-footer">
-        <p>GOOD HATS, LLC. SOFTWARE PROJECTS. NO HAT INVENTORY.</p>
-        <p class="asset-credit">
-          Hat mesh:
-          <a href="https://poly.pizza/m/aWxhfEnYwl" target="_blank" rel="noreferrer"
-            >Cap</a
-          >
-          by J-Toastie,
-          <a
-            href="https://creativecommons.org/licenses/by/3.0/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            CC BY 3.0
-          </a>
-          via Poly Pizza.
-        </p>
-      </footer>
-    </div>
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="footer-logo">Good<br />Hats.</span>
+          <p>Software projects.<br />No hat inventory.</p>
+        </div>
+        <div class="footer-col">
+          <p class="footer-heading">Portfolio</p>
+          <ul>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#stage">Stage</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <p class="footer-heading">Outside</p>
+          <ul>
+            <li>
+              <a href="https://replayer.cam" target="_blank" rel="noreferrer"
+                >replayer.cam ↗</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://poly.pizza/m/aWxhfEnYwl"
+                target="_blank"
+                rel="noreferrer"
+                >Cap mesh ↗</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="footer-col footer-meta">
+          <p class="footer-heading">Meta</p>
+          <p>Good Hats, LLC.<br />All rights reserved.</p>
+        </div>
+      </div>
+      <div class="footer-year" aria-hidden="true">2026</div>
+    </footer>
 
     <script type="module" src="./main.js"></script>
   </body>

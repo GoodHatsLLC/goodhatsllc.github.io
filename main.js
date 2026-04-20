@@ -38,12 +38,12 @@ if (sceneRoot) {
     );
     camera.position.set(0, 0.05, 10.4);
 
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1.7);
-    const keyLight = new THREE.DirectionalLight(0xffffff, 2.7);
+    const ambientLight = new THREE.AmbientLight(0xfff3e4, 1.6);
+    const keyLight = new THREE.DirectionalLight(0xfff7ec, 2.6);
     keyLight.position.set(5, 7, 5.5);
-    const fillLight = new THREE.PointLight(0x00d5ff, 18, 20, 2);
+    const fillLight = new THREE.PointLight(0xf8a348, 18, 22, 2);
     fillLight.position.set(-4.5, 2.3, 3.8);
-    const rimLight = new THREE.PointLight(0xff4fa2, 14, 18, 2);
+    const rimLight = new THREE.PointLight(0xdb4a2b, 14, 20, 2);
     rimLight.position.set(3.5, 1.4, -4.2);
     scene.add(ambientLight, keyLight, fillLight, rimLight);
 
@@ -54,28 +54,28 @@ if (sceneRoot) {
     scene.add(rig);
 
     const concreteLight = new THREE.MeshStandardMaterial({
-      color: 0xcfc9c1,
+      color: 0xd9d6d0,
       roughness: 1,
       metalness: 0,
     });
     const concreteDark = new THREE.MeshStandardMaterial({
-      color: 0x8b857d,
+      color: 0x6f6a64,
       roughness: 1,
       metalness: 0,
     });
     const inkMaterial = new THREE.MeshStandardMaterial({
-      color: 0x101010,
+      color: 0x1e1e1e,
       roughness: 0.92,
       metalness: 0.02,
     });
-    const cyanMaterial = new THREE.MeshStandardMaterial({
-      color: 0x00d5ff,
-      roughness: 0.84,
+    const warmMaterial = new THREE.MeshStandardMaterial({
+      color: 0xf8a348,
+      roughness: 0.82,
       metalness: 0.04,
     });
-    const pinkMaterial = new THREE.MeshStandardMaterial({
-      color: 0xff4fa2,
-      roughness: 0.84,
+    const redMaterial = new THREE.MeshStandardMaterial({
+      color: 0xdb4a2b,
+      roughness: 0.8,
       metalness: 0.04,
     });
 
@@ -95,21 +95,21 @@ if (sceneRoot) {
     slab.rotation.y = -Math.PI * 0.06;
     stageGroup.add(slab);
 
-    const cyanBar = new THREE.Mesh(
+    const warmBar = new THREE.Mesh(
       new THREE.BoxGeometry(0.22, 3.8, 0.22),
-      cyanMaterial,
+      warmMaterial,
     );
-    cyanBar.position.set(-2.45, 0.05, -0.8);
-    cyanBar.rotation.z = Math.PI * 0.05;
-    stageGroup.add(cyanBar);
+    warmBar.position.set(-2.45, 0.05, -0.8);
+    warmBar.rotation.z = Math.PI * 0.05;
+    stageGroup.add(warmBar);
 
-    const pinkBar = new THREE.Mesh(
+    const redBar = new THREE.Mesh(
       new THREE.BoxGeometry(3.6, 0.18, 0.18),
-      pinkMaterial,
+      redMaterial,
     );
-    pinkBar.position.set(0.85, 1.5, -0.95);
-    pinkBar.rotation.set(0.12, -0.18, -0.08);
-    stageGroup.add(pinkBar);
+    redBar.position.set(0.85, 1.5, -0.95);
+    redBar.rotation.set(0.12, -0.18, -0.08);
+    stageGroup.add(redBar);
 
     const inkBlock = new THREE.Mesh(
       new THREE.BoxGeometry(0.7, 0.7, 0.7),
@@ -131,7 +131,7 @@ if (sceneRoot) {
     };
 
     const loader = new GLTFLoader();
-    const edgeMaterial = new THREE.LineBasicMaterial({ color: 0x101010 });
+    const edgeMaterial = new THREE.LineBasicMaterial({ color: 0x1e1e1e });
     const tempBox = new THREE.Box3();
     const tempSize = new THREE.Vector3();
     const tempCenter = new THREE.Vector3();
@@ -160,8 +160,8 @@ if (sceneRoot) {
 
           child.material = materials.map((material, index) =>
             new THREE.MeshStandardMaterial({
-              color: material?.name === "gray_tone1" || index === 0 ? 0xd2cdc5 : 0x8c867e,
-              roughness: 1,
+              color: material?.name === "gray_tone1" || index === 0 ? 0xf1efea : 0xdb4a2b,
+              roughness: 0.95,
               metalness: 0,
             }),
           );
@@ -290,7 +290,7 @@ if (sceneRoot) {
       stageGroup.rotation.y += reducedMotionQuery.matches ? 0.001 : 0.0026;
       inkBlock.rotation.x += 0.004;
       inkBlock.rotation.y += 0.006;
-      pinkBar.rotation.z = -0.08 + Math.sin(elapsed * 0.8) * 0.04;
+      redBar.rotation.z = -0.08 + Math.sin(elapsed * 0.8) * 0.04;
 
       if (state.hatLoaded) {
         hatRig.rotation.y += reducedMotionQuery.matches ? 0.0012 : 0.0024;
